@@ -5,6 +5,7 @@ const setId = require('./utils/setId');
 const getPersonId = require('./utils/getPersonId');
 const findPersonWithId = require('./utils/find-person-with-id');
 const changePerson = require('./utils/change-person');
+const { validate: uuidValidate } = require('uuid');
 
 module.exports =  routes = {
     "/person": function(data, res) {
@@ -44,7 +45,11 @@ module.exports =  routes = {
         } else {
             const idFromPath = getPersonId(data.path);
             res.setHeader("Content-Type", "application/json");
-            if (!findPersonWithId(idFromPath)) {
+            if (!uuidValidate(idFromPath)) {
+                res.writeHead(400);
+                res.write('Person Id is not valid');
+                res.end("\n");
+            } else if (!findPersonWithId(idFromPath)) {
                 res.writeHead(404);
                 res.write('Person with such id doesn`t exist');
                 res.end("\n");

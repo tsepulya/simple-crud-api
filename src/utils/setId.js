@@ -1,5 +1,7 @@
-const setId = () => { // поменять потом эту функцию!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    return Math.floor(Math.random() * 1000).toString();
+const { v4: uuidv4 } = require('uuid');
+
+const setId = () => {
+    return uuidv4();
 }
 
 module.exports = setId;
