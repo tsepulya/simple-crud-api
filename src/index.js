@@ -1,41 +1,39 @@
-const Application = require('./application');
-const parseJson = require('./parse-json');
-const userRouter = require('./user-router');
+const http = require("http");
+const url = require("url");
 
 const PORT = process.env.PORT || 5000;
 
-// const emitter = new EventEmitter();
+const routes = require('./router');
+const reqPath = require('./constants/req-path');
 
-const app = new Application();
+const server = http.createServer(function(req, res) {
+  let parsedURL = url.parse(req.url, true);
+  let path = parsedURL.pathname;
+  reqPath.id = path;
+  console.log(path);
+  let headers = req.headers;
+  let method = req.method.toLowerCase();
+  let body = "";
 
-// const router = new Router();
+  req.on("data", (chunk) => {
+    body += chunk;
+    console.log("got some data");
+  });
+  req.on("end", function() {
+    if (body) {
+        req.body = JSON.parse(body);
+    }
+    console.log("send a response");
+    let route =
+    typeof routes[path] !== "undefined" ? routes[path] : routes["notFound"];
+    let data = {
+      path: path,
+      headers: headers,
+      method: method,
+      body: req.body
+    };
+    route(data, res);
+  });
+});
 
-
-// router.get('/users', (req, res) => {
-//     res.end('You send a request to USERS')
-// })
-
-// router.get('/posts', (req, res) => {
-//     res.end('You send a request to POSTS')
-// })
-
-app.use(parseJson);
-app.addRouter(userRouter);
-app.listen(PORT, () => console.log(`Server started on PORT ${PORT}`));
-
-
-// const server = http.createServer((req, res) => {
-//     const emitted = emitter.emit(`[${req.url}]:[${req.method}]`, req, res)
-//     if (!emitted) {
-//         res.end()
-//     }
-//     // if (req.url === '/users') {
-//     //     return res.end('USERS');
-//     // }
-//     // res.end(req.url);
-// });
-
-// server.listen(PORT, () => console.log(`Server started on PORT ${PORT}`));
-
-
-// node src/index.js
+server.listen(PORT, () => console.log(`Server started on PORT ${PORT}`));
