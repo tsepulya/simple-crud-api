@@ -1,5 +1,6 @@
 const http = require("http");
 const url = require("url");
+require('dotenv').config();
 
 const PORT = process.env.PORT || 5000;
 
@@ -36,4 +37,4 @@ const server = http.createServer(function(req, res) {
   });
 });
 
-server.listen(PORT, () => console.log(`Server started on PORT ${PORT}`));
+  server.listen(PORT, () => console.log(`Server started on PORT ${PORT}`));
