@@ -1,15 +1,20 @@
 {
     "name": "simple-crud-api",
     "version": "1.0.0",
+    "description": "simple-crud-api (task 3)",
     "author": "tsepulya",
     "main": "index.js",
     "scripts": {
-        "start": "nodemon src/index.js"
-    },
-    "devDependencies": {
-        "nodemon": "^2.0.15"
+        "start:dev": "nodemon src/index.js",
+        "start:prod": "webpack --mode production"
     },
     "dependencies": {
         "dotenv": "^10.0.0"
+    },
+    "devDependencies": {
+        "clean-webpack-plugin": "^4.0.0",
+        "nodemon": "^2.0.15",
+        "webpack": "^4.20.2",
+        "webpack-cli": "^3.1.1"
     }
 }
