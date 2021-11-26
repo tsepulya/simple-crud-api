@@ -2,7 +2,7 @@ const http = require("http");
 const url = require("url");
 require('dotenv').config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 const routes = require('./router');
 const reqPath = require('./constants/req-path');

@@ -15,7 +15,7 @@ module.exports = checkPerson = (person) => {
         // res.end("name must be a string");
     } else if (typeof(person.age) !== 'number') {
         statusMessage.push(400);
-        statusMessage.push("nage must be a number");
+        statusMessage.push("age must be a number");
         // res.writeHead(400, { 'Content-Type': 'text/plain' });
         // res.end("age must be a number");
     } else if (!Array.isArray(person.hobbies)) {

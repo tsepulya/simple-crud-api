@@ -6,13 +6,14 @@ jest.mock('../utils/setId');
 setId.mockImplementation(() => '110ec58a-a0f2-4ac4-8393-c866d813b8d1');
 
 describe('Scenario № 1. Success for create, update, delete person', function () {
+
     afterAll(done => {
         server.close();
         done();
     });
 
     it('"GET" for "/person" - should return empty array' , function(done){
-     
+
         request(server)
             .get("/person")
             .expect(200)

@@ -29,25 +29,24 @@ module.exports =  routes = {
                 res.write(JSON.stringify(person));
                 res.end("\n");
             }
-
         }
         // обработать вариант - ошибку, если другие методы на этот путь 
     },
     notFound: function(data, res) {
         if (!data.path.toString().startsWith("/person")) {
             res.writeHead(404);
-            res.write('This resourse doesn`t exist');
+            res.write(JSON.stringify('This resourse doesn`t exist'));
             res.end("\n");
         } else if (Array.isArray(getPersonId(data.path))) {
             res.writeHead(404);
-            res.write('This resourse doesn`t exist (extra path)');
+            res.write(JSON.stringify('This resourse doesn`t exist (extra path)'));
             res.end("\n");
         } else {
             const idFromPath = getPersonId(data.path);
             res.setHeader("Content-Type", "application/json");
             if (!uuidValidate(idFromPath)) {
                 res.writeHead(400);
-                res.write('Person Id is not valid');
+                res.write(JSON.stringify('Person Id is not valid'));
                 res.end("\n");
             } else if (!findPersonWithId(idFromPath)) {
                 res.writeHead(404);
