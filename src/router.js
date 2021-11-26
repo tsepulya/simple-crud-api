@@ -29,8 +29,12 @@ module.exports =  routes = {
                 res.write(JSON.stringify(person));
                 res.end("\n");
             }
+        } else {
+            res.setHeader("Content-Type", "application/json");
+            res.writeHead(500);
+            res.write(JSON.stringify('Server doesn`t implement this method for this path'));
+            res.end("\n");
         }
-        // обработать вариант - ошибку, если другие методы на этот путь 
     },
     notFound: function(data, res) {
         if (!data.path.toString().startsWith("/person")) {
@@ -75,6 +79,11 @@ module.exports =  routes = {
                     const index = persons.indexOf(personWithId);
                     persons.splice(index, 1);
                     res.writeHead(204);
+                    res.end("\n");
+                } else {
+                    res.setHeader("Content-Type", "application/json");
+                    res.writeHead(500);
+                    res.write(JSON.stringify('Server doesn`t implement this method for this path'));
                     res.end("\n");
                 }
             }

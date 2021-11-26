@@ -1,7 +1,7 @@
 const request = require('supertest');
 const server = require('../index');
 
-describe('Scenario № 2. Errors: not existing resources, not valid id', function () {
+describe('Scenario № 2. Errors: not existing resources, not valid id, not implemented methods', function () {
 
     afterAll(done => {
         server.close();
@@ -37,6 +37,15 @@ describe('Scenario № 2. Errors: not existing resources, not valid id', functio
             .expect('"Person Id is not valid"\n')
             .end(done);
 
+    });
+
+    it('"DELETE" for "/person" - should return status 500' , function(done){
+     
+        request(server)
+            .delete("/person")
+            .expect(500)
+            .expect('"Server doesn`t implement this method for this path"\n')
+            .end(done);
     });
 
 });
