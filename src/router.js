@@ -51,7 +51,7 @@ module.exports =  routes = {
                 res.end("\n");
             } else if (!findPersonWithId(idFromPath)) {
                 res.writeHead(404);
-                res.write('Person with such id doesn`t exist');
+                res.write(JSON.stringify('Person with such id doesn`t exist'));
                 res.end("\n");
             } else {
                 const personWithId = findPersonWithId(idFromPath);
