@@ -59,13 +59,13 @@ module.exports =  routes = {
                     res.write(JSON.stringify(personWithId));
                     res.end("\n");
                 } else if (data.method === 'put') {
-                    const changedPerson = changePerson(personWithId, data.body);
-                    const [status, message] = checkPerson(changedPerson);
+                    const [status, message] = checkPerson(data.body);
                     if (message) {
                         res.writeHead(status);
                         res.write(JSON.stringify(message));
                         res.end("\n");
                     } else {
+                        const changedPerson = changePerson(personWithId, data.body);
                         res.writeHead(200);
                         res.write(JSON.stringify(changedPerson));
                         res.end("\n");

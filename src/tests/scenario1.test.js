@@ -17,7 +17,7 @@ describe('Scenario № 1. Success for create, update, delete person', function (
         request(server)
             .get("/person")
             .expect(200)
-            .expect('[{"id":"1","name":"Petya","age":30,"hobbies":["hockey","swimming"]},{"id":"2","name":"Vasya","age":40,"hobbies":["running","regby"]}]\n')
+            .expect('[]\n')
             .end(done);
     });
 
