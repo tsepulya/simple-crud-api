@@ -34,27 +34,13 @@ module.exports = server = http.createServer(function(req, res) {
   });
 });
 
-  // server.listen(PORT, () => console.log(`Server started on PORT ${PORT}`));
   server.listen(PORT, "localhost", function(error) {
     if (error) {
-      // console.error("Unable to listen on port", PORT, error);
       listen(PORT + 1);
-      // return;
     } else {
       console.log(`Server started on PORT ${PORT}`)
     }
   });
-
-  // npm run start:dev
-  // npm run start:prod
-
-  // ToDo:
-
-  // 1. В репозитории с приложением имеется файл Readme.md, содержащий подробные инструкции по установке, запуску и использованию приложения плюс 10 баллов
-  // 2. Ошибки, возникающие при обработке запроса на /person корректно обрабатываются и в случае их возникновения API возвращает статус код 500 с соответствующим сообщением плюс 10 баллов
-  // 5. Убрать консоль логи, комментарии
-  // 6. Перепроверить все запросы, статусы, сообщения
-  // 7. Перепроверить тесты
 
 
   

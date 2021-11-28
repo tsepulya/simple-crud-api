@@ -7,5 +7,3 @@ module.exports = changePerson = (person, changedPerson) => {
     })
     return person;
   }
-
-  // предусмотреть ошибку если вводят id
