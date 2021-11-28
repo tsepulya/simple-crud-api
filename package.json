@@ -1,0 +1,24 @@
+{
+    "name": "simple-crud-api",
+    "version": "1.0.0",
+    "description": "simple-crud-api (task 3)",
+    "author": "tsepulya",
+    "main": "index.js",
+    "scripts": {
+        "start:dev": "nodemon src/index.js",
+        "start:prod": "webpack --mode production && node dist/bundle.js",
+        "test": "jest"
+    },
+    "dependencies": {
+        "dotenv": "^10.0.0",
+        "uuid": "^8.3.2"
+    },
+    "devDependencies": {
+        "clean-webpack-plugin": "^4.0.0",
+        "jest": "^27.3.1",
+        "nodemon": "^2.0.15",
+        "supertest": "^6.1.6",
+        "webpack": "^4.20.2",
+        "webpack-cli": "^3.1.1"
+    }
+}
